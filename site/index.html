@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,13 +12,13 @@
 <meta property="og:title" content="Gökhan Köse — AI Operator">
 <meta property="og:description" content="Agenten-Infrastruktur, Commerce-Engines und ERP-Systeme für den deutschsprachigen Mittelstand.">
 <meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b0b0c'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' fill='%23d4a657' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
 
 <style>
 :root{
   --bg:#0b0b0c;
-  --bg-soft:#131315;
   --line:rgba(237,234,228,.10);
   --line-strong:rgba(237,234,228,.18);
   --fg:#edeae4;
@@ -43,41 +43,39 @@ body{
   overflow-x:hidden;
 }
 body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   background:
     radial-gradient(60rem 40rem at 18% -10%, rgba(212,166,87,.10), transparent 60%),
     radial-gradient(50rem 36rem at 92% 8%, rgba(120,150,220,.06), transparent 62%);
 }
 body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:1;
-  opacity:.035;
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.035;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .wrap{position:relative;z-index:2;max-width:64rem;margin:0 auto;padding:0 1.75rem}
 
+/* ---------- language switch ---------- */
+html[data-lang="de"] [data-t="en"]{display:none}
+html[data-lang="en"] [data-t="de"]{display:none}
+
+.langswitch{display:inline-flex;border:1px solid var(--line-strong);border-radius:2px;overflow:hidden}
+.langswitch button{
+  appearance:none;background:none;border:0;cursor:pointer;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--fg-faint);padding:.42rem .62rem;line-height:1.2;
+  transition:color .2s ease,background .2s ease;
+}
+.langswitch button+button{border-left:1px solid var(--line-strong)}
+.langswitch button:hover{color:var(--fg)}
+.langswitch button[aria-pressed="true"]{color:var(--accent);background:var(--accent-soft)}
+
 /* ---------- header ---------- */
-.top{
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  padding:1.9rem 0 0;
-}
-.mark{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--fg-dim);text-decoration:none;
-}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.9rem 0 0}
+.mark{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim);text-decoration:none}
 .mark b{color:var(--fg);font-weight:600}
+.top .right{display:flex;align-items:center;gap:1.4rem}
 .top nav{display:flex;gap:1.4rem}
-.top nav a{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--fg-faint);text-decoration:none;transition:color .2s ease;
-}
+.top nav a{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);text-decoration:none;transition:color .2s ease}
 .top nav a:hover{color:var(--accent)}
 
 /* ---------- hero ---------- */
@@ -87,63 +85,27 @@ body::after{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
   color:var(--fg-faint);margin:0 0 2rem;
 }
-.dot{
-  width:6px;height:6px;border-radius:50%;background:var(--accent);
-  box-shadow:0 0 0 0 var(--accent-soft);animation:pulse 2.8s ease-out infinite;
-}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2.8s ease-out infinite}
 @keyframes pulse{
   0%{box-shadow:0 0 0 0 rgba(212,166,87,.45)}
   70%{box-shadow:0 0 0 12px rgba(212,166,87,0)}
   100%{box-shadow:0 0 0 0 rgba(212,166,87,0)}
 }
-h1{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:clamp(3.1rem,11.5vw,7.5rem);
-  line-height:.95;
-  letter-spacing:-.025em;
-  margin:0;
-}
-.role{
-  margin:1.9rem 0 0;
-  display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;
-}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.1rem,11.5vw,7.5rem);line-height:.95;letter-spacing:-.025em;margin:0}
+.role{margin:1.9rem 0 0;display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
 .role .rule{flex:0 0 3.5rem;height:1px;background:var(--accent);opacity:.75;transform:translateY(-.35em)}
-.role span{
-  font-family:var(--mono);
-  font-size:clamp(.95rem,2.6vw,1.25rem);
-  letter-spacing:.3em;
-  text-transform:uppercase;
-  color:var(--accent);
-}
-.lede{
-  margin:2.4rem 0 0;
-  max-width:34rem;
-  font-size:clamp(1rem,2.4vw,1.16rem);
-  color:var(--fg-dim);
-  line-height:1.7;
-}
+.role span.title{font-family:var(--mono);font-size:clamp(.95rem,2.6vw,1.25rem);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+.lede{margin:2.4rem 0 0;max-width:34rem;font-size:clamp(1rem,2.4vw,1.16rem);color:var(--fg-dim);line-height:1.7}
 
 /* ---------- coming soon ---------- */
 .soon{
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:3.2rem 0;
-  display:grid;
-  grid-template-columns:minmax(0,15rem) minmax(0,1fr);
-  gap:2rem 3rem;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:3.2rem 0;display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:2rem 3rem;
 }
-.soon h2{
-  margin:0;
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--fg-faint);font-weight:500;
-}
+.soon h2{margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-faint);font-weight:500}
 .soon-body p{margin:0 0 1.1rem;color:var(--fg-dim);max-width:38rem}
-.soon-body p:last-child{margin-bottom:0}
-.cursor{
-  display:inline-block;width:.55em;height:1.05em;vertical-align:-.16em;
-  background:var(--accent);margin-left:.15em;animation:blink 1.15s steps(1) infinite;
-}
+.soon-body p:last-of-type{margin-bottom:0}
+.cursor{display:inline-block;width:.55em;height:1.05em;vertical-align:-.16em;background:var(--accent);margin-left:.15em;animation:blink 1.15s steps(1) infinite}
 @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
 .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.6rem 0 0;padding:0;list-style:none}
 .tags li{
@@ -154,18 +116,12 @@ h1{
 
 /* ---------- contact ---------- */
 .contact{padding:3.2rem 0;border-bottom:1px solid var(--line)}
-.contact h2{
-  margin:0 0 1.6rem;
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--fg-faint);font-weight:500;
-}
+.contact h2{margin:0 0 1.6rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-faint);font-weight:500}
 .links{display:flex;flex-wrap:wrap;gap:.75rem}
 .links a{
   display:inline-flex;align-items:center;gap:.55rem;
-  border:1px solid var(--line-strong);border-radius:2px;
-  padding:.72rem 1.1rem;
-  color:var(--fg);text-decoration:none;
-  font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;
+  border:1px solid var(--line-strong);border-radius:2px;padding:.72rem 1.1rem;
+  color:var(--fg);text-decoration:none;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;
   transition:border-color .2s ease,color .2s ease,background .2s ease;
 }
 .links a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
@@ -174,20 +130,14 @@ h1{
 
 /* ---------- legal ---------- */
 .legal{padding:3.5rem 0 1rem}
-.legal h2{
-  margin:0 0 2rem;
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--fg-faint);font-weight:500;
-}
-.legal h3{
-  margin:2.2rem 0 .5rem;
-  font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.01em;color:var(--fg);
-}
-.legal h3:first-of-type{margin-top:0}
+.legal h2{margin:0 0 2rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-faint);font-weight:500}
+.legal h3{margin:2.2rem 0 .5rem;font-size:.95rem;font-weight:600;letter-spacing:.01em;color:var(--fg)}
+.legal .block:first-child h3{margin-top:0}
 .legal p{margin:0 0 .9rem;color:var(--fg-dim);font-size:.92rem;max-width:44rem}
 .legal a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
 .legal a:hover{color:var(--accent);text-decoration-color:var(--accent)}
 .legal address{font-style:normal;color:var(--fg-dim);font-size:.92rem}
+.legal .note{font-size:.8rem;color:var(--fg-faint);border-left:1px solid var(--line-strong);padding-left:.9rem;margin-bottom:2rem}
 .legal .kv{margin:0;font-size:.92rem;color:var(--fg-dim)}
 .legal .kv div{display:flex;gap:1rem;padding:.3rem 0;border-bottom:1px solid var(--line);max-width:44rem}
 .legal .kv dt{flex:0 0 9.5rem;color:var(--fg-faint);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding-top:.2rem}
@@ -195,8 +145,7 @@ h1{
 
 /* ---------- footer ---------- */
 footer{
-  border-top:1px solid var(--line);
-  margin-top:3rem;padding:1.6rem 0 3rem;
+  border-top:1px solid var(--line);margin-top:3rem;padding:1.6rem 0 3rem;
   display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
   font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-faint);
 }
@@ -207,11 +156,10 @@ footer a:hover{color:var(--accent)}
   .soon{grid-template-columns:1fr;gap:1.2rem}
   .legal .kv div{flex-direction:column;gap:.15rem}
   .legal .kv dt{flex:none}
+  .top .right{gap:1rem}
   .top nav{gap:1rem}
 }
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -219,32 +167,53 @@ footer a:hover{color:var(--accent)}
 
   <header class="top">
     <a class="mark" href="/"><b>koeseo</b></a>
-    <nav>
-      <a href="#kontakt">Kontakt</a>
-      <a href="#impressum">Impressum</a>
-    </nav>
+    <div class="right">
+      <nav>
+        <a href="#kontakt"><span data-t="de">Kontakt</span><span data-t="en">Contact</span></a>
+        <a href="#impressum"><span data-t="de">Impressum</span><span data-t="en">Legal</span></a>
+      </nav>
+      <div class="langswitch" role="group" aria-label="Sprache / Language">
+        <button type="button" data-setlang="de" aria-pressed="true" lang="de">DE</button>
+        <button type="button" data-setlang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <p class="eyebrow"><span class="dot"></span> Bochum · seit 2016</p>
+      <p class="eyebrow">
+        <span class="dot"></span>
+        <span data-t="de">Bochum · seit 2016</span>
+        <span data-t="en">Bochum, Germany · since 2016</span>
+      </p>
       <h1>Gökhan Köse</h1>
-      <p class="role"><span class="rule"></span><span>AI Operator</span></p>
+      <p class="role"><span class="rule"></span><span class="title">AI Operator</span></p>
       <p class="lede">
-        Ich baue und betreibe KI-Systeme, die im Tagesgeschäft laufen:
-        Agenten-Infrastruktur, Commerce-Engines und ERP für den
-        deutschsprachigen Mittelstand.
+        <span data-t="de">Ich baue und betreibe KI-Systeme, die im Tagesgeschäft laufen:
+          Agenten-Infrastruktur, Commerce-Engines und ERP für den
+          deutschsprachigen Mittelstand.</span>
+        <span data-t="en">I build and operate AI systems that hold up in daily business:
+          agent infrastructure, commerce engines and ERP for
+          German-speaking SMEs.</span>
       </p>
     </section>
 
     <section class="soon" id="soon">
-      <h2>Status</h2>
+      <h2><span data-t="de">Status</span><span data-t="en">Status</span></h2>
       <div class="soon-body">
-        <p>Die vollständige Seite ist im Aufbau.<span class="cursor" aria-hidden="true"></span></p>
-        <p>Bis dahin: alles Weitere auf Anfrage. Neue Projekte nehme ich
-           nach Kapazität an — kurze Mail genügt.</p>
+        <p>
+          <span data-t="de">Die vollständige Seite ist im Aufbau.</span>
+          <span data-t="en">The full site is under construction.</span>
+          <span class="cursor" aria-hidden="true"></span>
+        </p>
+        <p>
+          <span data-t="de">Bis dahin: alles Weitere auf Anfrage. Neue Projekte nehme ich
+            nach Kapazität an — eine kurze Mail genügt.</span>
+          <span data-t="en">Until then, everything else on request. I take on new projects
+            as capacity allows — a short email is enough.</span>
+        </p>
         <ul class="tags">
-          <li>AI-Agenten</li>
+          <li><span data-t="de">AI-Agenten</span><span data-t="en">AI Agents</span></li>
           <li>MCP</li>
           <li>Commerce</li>
           <li>ERP</li>
@@ -254,7 +223,7 @@ footer a:hover{color:var(--accent)}
     </section>
 
     <section class="contact" id="kontakt">
-      <h2>Kontakt</h2>
+      <h2><span data-t="de">Kontakt</span><span data-t="en">Contact</span></h2>
       <div class="links">
         <a href="mailto:info@koeseo.com">info@koeseo.com <span class="arw">↗</span></a>
         <a href="https://www.linkedin.com/in/goekhan-koese/" rel="me noopener">LinkedIn <span class="arw">↗</span></a>
@@ -263,87 +232,208 @@ footer a:hover{color:var(--accent)}
     </section>
 
     <section class="legal" id="impressum">
-      <h2>Impressum</h2>
+      <h2><span data-t="de">Impressum</span><span data-t="en">Legal Notice</span></h2>
 
-      <h3>Angaben gemäß § 5 DDG</h3>
-      <address>
-        Gökhan Köse<br>
-        KoeSEO — Inhaber Gökhan Köse<br>
-        <!-- TODO: Straße + Hausnummer, PLZ + Ort eintragen -->
-        [Straße Hausnummer]<br>
-        [PLZ] Bochum<br>
-        Deutschland
-      </address>
+      <!-- ============ DEUTSCH ============ -->
+      <div data-t="de" lang="de">
+        <div class="block">
+          <h3>Angaben gemäß § 5 DDG</h3>
+          <address>
+            Gökhan Köse<br>
+            KoeSEO — Inhaber Gökhan Köse<br>
+            <!-- TODO: Straße + Hausnummer, PLZ + Ort eintragen -->
+            [Straße Hausnummer]<br>
+            [PLZ] Bochum<br>
+            Deutschland
+          </address>
+        </div>
 
-      <h3>Kontakt</h3>
-      <dl class="kv">
-        <div><dt>E-Mail</dt><dd><a href="mailto:info@koeseo.com">info@koeseo.com</a></dd></div>
-        <!-- TODO: Telefonnummer eintragen -->
-        <div><dt>Telefon</dt><dd>[Telefonnummer]</dd></div>
-      </dl>
+        <h3>Kontakt</h3>
+        <dl class="kv">
+          <div><dt>E-Mail</dt><dd><a href="mailto:info@koeseo.com">info@koeseo.com</a></dd></div>
+          <!-- TODO: Telefonnummer eintragen -->
+          <div><dt>Telefon</dt><dd>[Telefonnummer]</dd></div>
+        </dl>
 
-      <h3>Umsatzsteuer</h3>
-      <!-- TODO: USt-IdNr. eintragen ODER diesen Absatz durch den Kleinunternehmer-Hinweis ersetzen -->
-      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
-        [DE-USt-IdNr.]</p>
+        <h3>Umsatzsteuer</h3>
+        <!-- TODO: USt-IdNr. eintragen ODER diesen Absatz durch den Kleinunternehmer-Hinweis ersetzen -->
+        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
+          [DE-USt-IdNr.]</p>
 
-      <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
-      <p>Gökhan Köse, Anschrift wie oben.</p>
+        <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+        <p>Gökhan Köse, Anschrift wie oben.</p>
 
-      <h3>Verbraucherstreitbeilegung</h3>
-      <p>Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren
-        vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        <h3>Verbraucherstreitbeilegung</h3>
+        <p>Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren
+          vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
 
-      <h3>Haftung für Inhalte</h3>
-      <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf
-        diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG
-        bin ich als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
-        gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen,
-        die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung
-        oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben
-        hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt
-        der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden
-        entsprechender Rechtsverletzungen entferne ich diese Inhalte umgehend.</p>
+        <h3>Haftung für Inhalte</h3>
+        <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf
+          diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG
+          bin ich als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
+          gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen,
+          die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung
+          oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben
+          hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt
+          der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden
+          entsprechender Rechtsverletzungen entferne ich diese Inhalte umgehend.</p>
 
-      <h3>Haftung für Links</h3>
-      <p>Dieses Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
-        ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine
-        Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige
-        Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden
-        zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft; rechtswidrige
-        Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente
-        inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer
-        Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen entferne
-        ich derartige Links umgehend.</p>
+        <h3>Haftung für Links</h3>
+        <p>Dieses Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
+          ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine
+          Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige
+          Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden
+          zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft; rechtswidrige
+          Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente
+          inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer
+          Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen entferne
+          ich derartige Links umgehend.</p>
 
-      <h3>Urheberrecht</h3>
-      <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
-        unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
-        Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes
-        bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+        <h3>Urheberrecht</h3>
+        <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
+          unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
+          Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes
+          bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
 
-      <h3>Datenschutz</h3>
-      <p>Diese Seite setzt keine Cookies, bindet keine externen Schriftarten, Skripte
-        oder Analysedienste ein und überträgt keine Daten an Dritte. Beim Aufruf
-        verarbeitet der Webserver technisch notwendige Zugriffsdaten (IP-Adresse,
-        Zeitpunkt, angeforderte Ressource, User-Agent) auf Grundlage von
-        Art. 6 Abs. 1 lit. f DSGVO zum sicheren Betrieb; diese Logs werden nach
-        spätestens 7 Tagen gelöscht. Bei Kontaktaufnahme per E-Mail verarbeite ich die
-        übermittelten Angaben ausschließlich zur Bearbeitung der Anfrage
-        (Art. 6 Abs. 1 lit. b bzw. f DSGVO). Ihnen stehen die Rechte auf Auskunft,
-        Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch zu
-        sowie ein Beschwerderecht bei der zuständigen Aufsichtsbehörde
-        (Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen).
-        Anfragen an <a href="mailto:info@koeseo.com">info@koeseo.com</a>.</p>
+        <h3>Datenschutz</h3>
+        <p>Diese Seite setzt keine Cookies, bindet keine externen Schriftarten, Skripte
+          oder Analysedienste ein und überträgt keine Daten an Dritte. Die gewählte
+          Sprache wird ausschließlich lokal im Browser gespeichert (localStorage) und
+          nicht übertragen. Beim Aufruf verarbeitet der Webserver technisch notwendige
+          Zugriffsdaten (IP-Adresse, Zeitpunkt, angeforderte Ressource, User-Agent) auf
+          Grundlage von Art. 6 Abs. 1 lit. f DSGVO zum sicheren Betrieb; diese Logs werden
+          nach spätestens 7 Tagen gelöscht. Bei Kontaktaufnahme per E-Mail verarbeite ich
+          die übermittelten Angaben ausschließlich zur Bearbeitung der Anfrage
+          (Art. 6 Abs. 1 lit. b bzw. f DSGVO). Ihnen stehen die Rechte auf Auskunft,
+          Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch zu
+          sowie ein Beschwerderecht bei der zuständigen Aufsichtsbehörde
+          (Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen).
+          Anfragen an <a href="mailto:info@koeseo.com">info@koeseo.com</a>.</p>
+      </div>
+
+      <!-- ============ ENGLISH ============ -->
+      <div data-t="en" lang="en">
+        <p class="note">Translation for convenience. The German version above is the
+          legally binding one.</p>
+
+        <div class="block">
+          <h3>Information pursuant to § 5 DDG (German Digital Services Act)</h3>
+          <address>
+            Gökhan Köse<br>
+            KoeSEO — sole proprietor Gökhan Köse<br>
+            <!-- TODO: street + number, postcode + city -->
+            [Street No.]<br>
+            [Postcode] Bochum<br>
+            Germany
+          </address>
+        </div>
+
+        <h3>Contact</h3>
+        <dl class="kv">
+          <div><dt>Email</dt><dd><a href="mailto:info@koeseo.com">info@koeseo.com</a></dd></div>
+          <!-- TODO: phone number -->
+          <div><dt>Phone</dt><dd>[Phone number]</dd></div>
+        </dl>
+
+        <h3>VAT</h3>
+        <!-- TODO: VAT ID, or replace with the small-business note (§ 19 UStG) -->
+        <p>VAT identification number pursuant to § 27a of the German VAT Act:<br>
+          [DE VAT ID]</p>
+
+        <h3>Responsible for content pursuant to § 18 (2) MStV</h3>
+        <p>Gökhan Köse, address as above.</p>
+
+        <h3>Consumer dispute resolution</h3>
+        <p>I am neither willing nor obliged to participate in dispute resolution
+          proceedings before a consumer arbitration board.</p>
+
+        <h3>Liability for content</h3>
+        <p>As a service provider, I am responsible for my own content on these pages
+          under general law pursuant to § 7 (1) DDG. Under §§ 8 to 10 DDG, however, I am
+          not obliged to monitor transmitted or stored third-party information, or to
+          investigate circumstances that indicate unlawful activity. Obligations to
+          remove or block the use of information under general law remain unaffected.
+          Liability in this respect is only possible from the point in time at which a
+          concrete infringement becomes known. If I become aware of such infringements,
+          I will remove the content immediately.</p>
+
+        <h3>Liability for links</h3>
+        <p>This site contains links to external third-party websites over whose content
+          I have no control. I therefore cannot accept any liability for such external
+          content. The respective provider or operator of the linked pages is always
+          responsible for their content. The linked pages were checked for possible legal
+          violations at the time of linking; no unlawful content was recognisable at that
+          time. Permanent monitoring of the content of linked pages is not reasonable
+          without concrete evidence of an infringement. If I become aware of any legal
+          violations, I will remove such links immediately.</p>
+
+        <h3>Copyright</h3>
+        <p>The content and works created by the site operator on these pages are subject
+          to German copyright law. Reproduction, adaptation, distribution and any kind of
+          use beyond the limits of copyright require the written consent of the
+          respective author or creator.</p>
+
+        <h3>Privacy</h3>
+        <p>This site sets no cookies, loads no external fonts, scripts or analytics
+          services, and transmits no data to third parties. Your language choice is
+          stored locally in your browser (localStorage) only and is never transmitted.
+          When you visit, the web server processes technically necessary access data
+          (IP address, timestamp, requested resource, user agent) on the basis of
+          Art. 6 (1) (f) GDPR for secure operation; these logs are deleted after 7 days
+          at the latest. If you contact me by email, I process the information you
+          provide solely to handle your enquiry (Art. 6 (1) (b) or (f) GDPR). You have
+          the right to information, rectification, erasure, restriction, data portability
+          and objection, as well as the right to lodge a complaint with the competent
+          supervisory authority (the State Commissioner for Data Protection and Freedom
+          of Information of North Rhine-Westphalia). Enquiries to
+          <a href="mailto:info@koeseo.com">info@koeseo.com</a>.</p>
+      </div>
     </section>
   </main>
 
   <footer>
     <span>© <span id="y">2026</span> Gökhan Köse</span>
-    <span><a href="#impressum">Impressum &amp; Datenschutz</a></span>
+    <span><a href="#impressum">
+      <span data-t="de">Impressum &amp; Datenschutz</span>
+      <span data-t="en">Legal Notice &amp; Privacy</span>
+    </a></span>
   </footer>
 
 </div>
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll('[data-setlang]');
+
+  function apply(lang){
+    root.setAttribute('data-lang', lang);
+    root.setAttribute('lang', lang);
+    for (var i = 0; i < buttons.length; i++){
+      buttons[i].setAttribute('aria-pressed', String(buttons[i].dataset.setlang === lang));
+    }
+  }
+
+  function stored(){
+    try { return localStorage.getItem('lang'); } catch (e) { return null; }
+  }
+
+  var initial = stored();
+  if (initial !== 'de' && initial !== 'en'){
+    initial = (navigator.language || 'de').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+  }
+  apply(initial);
+
+  for (var i = 0; i < buttons.length; i++){
+    buttons[i].addEventListener('click', function(){
+      var lang = this.dataset.setlang;
+      apply(lang);
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    });
+  }
+
+  document.getElementById('y').textContent = new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
