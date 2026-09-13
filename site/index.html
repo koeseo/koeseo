@@ -13,6 +13,7 @@
 <meta property="og:description" content="Agenten-Infrastruktur, Commerce-Engines und ERP-Systeme für den deutschsprachigen Mittelstand.">
 <meta property="og:locale" content="de_DE">
 <meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b0b0c'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' fill='%23d4a657' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
 
@@ -54,15 +55,18 @@ body::after{
 }
 .wrap{position:relative;z-index:2;max-width:64rem;margin:0 auto;padding:0 1.75rem}
 
-/* ---------- language switch ---------- */
-html[data-lang="de"] [data-t="en"]{display:none}
-html[data-lang="en"] [data-t="de"]{display:none}
+/* ---------- language switch ----------
+   Sichtbar ist nur, was zur aktiven Sprache gehört; das aktive Element
+   behält sein natürliches display (inline bei span, block bei div). */
+html[data-lang="de"] [data-t]:not([data-t="de"]){display:none}
+html[data-lang="en"] [data-t]:not([data-t="en"]){display:none}
+html[data-lang="tr"] [data-t]:not([data-t="tr"]){display:none}
 
 .langswitch{display:inline-flex;border:1px solid var(--line-strong);border-radius:2px;overflow:hidden}
 .langswitch button{
   appearance:none;background:none;border:0;cursor:pointer;
   font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--fg-faint);padding:.42rem .62rem;line-height:1.2;
+  color:var(--fg-faint);padding:.42rem .58rem;line-height:1.2;
   transition:color .2s ease,background .2s ease;
 }
 .langswitch button+button{border-left:1px solid var(--line-strong)}
@@ -156,8 +160,8 @@ footer a:hover{color:var(--accent)}
   .soon{grid-template-columns:1fr;gap:1.2rem}
   .legal .kv div{flex-direction:column;gap:.15rem}
   .legal .kv dt{flex:none}
-  .top .right{gap:1rem}
-  .top nav{gap:1rem}
+  .top .right{gap:.9rem}
+  .top nav{gap:.9rem}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -169,12 +173,17 @@ footer a:hover{color:var(--accent)}
     <a class="mark" href="/"><b>koeseo</b></a>
     <div class="right">
       <nav>
-        <a href="#kontakt"><span data-t="de">Kontakt</span><span data-t="en">Contact</span></a>
-        <a href="#impressum"><span data-t="de">Impressum</span><span data-t="en">Legal</span></a>
+        <a href="#kontakt">
+          <span data-t="de">Kontakt</span><span data-t="en">Contact</span><span data-t="tr">İletişim</span>
+        </a>
+        <a href="#impressum">
+          <span data-t="de">Impressum</span><span data-t="en">Legal</span><span data-t="tr">Künye</span>
+        </a>
       </nav>
-      <div class="langswitch" role="group" aria-label="Sprache / Language">
+      <div class="langswitch" role="group" aria-label="Sprache / Language / Dil">
         <button type="button" data-setlang="de" aria-pressed="true" lang="de">DE</button>
         <button type="button" data-setlang="en" aria-pressed="false" lang="en">EN</button>
+        <button type="button" data-setlang="tr" aria-pressed="false" lang="tr">TR</button>
       </div>
     </div>
   </header>
@@ -185,6 +194,7 @@ footer a:hover{color:var(--accent)}
         <span class="dot"></span>
         <span data-t="de">Bochum · seit 2016</span>
         <span data-t="en">Bochum, Germany · since 2016</span>
+        <span data-t="tr">Bochum, Almanya · 2016'dan beri</span>
       </p>
       <h1>Gökhan Köse</h1>
       <p class="role"><span class="rule"></span><span class="title">AI Operator</span></p>
@@ -195,15 +205,19 @@ footer a:hover{color:var(--accent)}
         <span data-t="en">I build and operate AI systems that hold up in daily business:
           agent infrastructure, commerce engines and ERP for
           German-speaking SMEs.</span>
+        <span data-t="tr">Günlük işleyişte ayakta kalan yapay zekâ sistemleri kuruyor ve
+          işletiyorum: Almanca konuşulan bölgedeki KOBİ'ler için ajan altyapısı,
+          ticaret motorları ve ERP.</span>
       </p>
     </section>
 
     <section class="soon" id="soon">
-      <h2><span data-t="de">Status</span><span data-t="en">Status</span></h2>
+      <h2><span data-t="de">Status</span><span data-t="en">Status</span><span data-t="tr">Durum</span></h2>
       <div class="soon-body">
         <p>
           <span data-t="de">Die vollständige Seite ist im Aufbau.</span>
           <span data-t="en">The full site is under construction.</span>
+          <span data-t="tr">Sitenin tamamı yapım aşamasında.</span>
           <span class="cursor" aria-hidden="true"></span>
         </p>
         <p>
@@ -211,9 +225,13 @@ footer a:hover{color:var(--accent)}
             nach Kapazität an — eine kurze Mail genügt.</span>
           <span data-t="en">Until then, everything else on request. I take on new projects
             as capacity allows — a short email is enough.</span>
+          <span data-t="tr">O zamana kadar diğer her şey talep üzerine. Yeni projeleri
+            kapasiteye göre alıyorum — kısa bir e-posta yeterli.</span>
         </p>
         <ul class="tags">
-          <li><span data-t="de">AI-Agenten</span><span data-t="en">AI Agents</span></li>
+          <li>
+            <span data-t="de">AI-Agenten</span><span data-t="en">AI Agents</span><span data-t="tr">Yapay Zekâ Ajanları</span>
+          </li>
           <li>MCP</li>
           <li>Commerce</li>
           <li>ERP</li>
@@ -223,7 +241,7 @@ footer a:hover{color:var(--accent)}
     </section>
 
     <section class="contact" id="kontakt">
-      <h2><span data-t="de">Kontakt</span><span data-t="en">Contact</span></h2>
+      <h2><span data-t="de">Kontakt</span><span data-t="en">Contact</span><span data-t="tr">İletişim</span></h2>
       <div class="links">
         <a href="mailto:info@koeseo.com">info@koeseo.com <span class="arw">↗</span></a>
         <a href="https://www.linkedin.com/in/goekhan-koese/" rel="me noopener">LinkedIn <span class="arw">↗</span></a>
@@ -232,9 +250,9 @@ footer a:hover{color:var(--accent)}
     </section>
 
     <section class="legal" id="impressum">
-      <h2><span data-t="de">Impressum</span><span data-t="en">Legal Notice</span></h2>
+      <h2><span data-t="de">Impressum</span><span data-t="en">Legal Notice</span><span data-t="tr">Künye</span></h2>
 
-      <!-- ============ DEUTSCH ============ -->
+      <!-- ============ DEUTSCH (rechtlich maßgeblich) ============ -->
       <div data-t="de" lang="de">
         <div class="block">
           <h3>Angaben gemäß § 5 DDG</h3>
@@ -313,8 +331,8 @@ footer a:hover{color:var(--accent)}
 
       <!-- ============ ENGLISH ============ -->
       <div data-t="en" lang="en">
-        <p class="note">Translation for convenience. The German version above is the
-          legally binding one.</p>
+        <p class="note">Translation for convenience. The German version is the legally
+          binding one.</p>
 
         <div class="block">
           <h3>Information pursuant to § 5 DDG (German Digital Services Act)</h3>
@@ -388,6 +406,84 @@ footer a:hover{color:var(--accent)}
           of Information of North Rhine-Westphalia). Enquiries to
           <a href="mailto:info@koeseo.com">info@koeseo.com</a>.</p>
       </div>
+
+      <!-- ============ TÜRKÇE ============ -->
+      <div data-t="tr" lang="tr">
+        <p class="note">Bu çeviri bilgilendirme amaçlıdır. Hukuken bağlayıcı olan
+          Almanca metindir.</p>
+
+        <div class="block">
+          <h3>§ 5 DDG (Alman Dijital Hizmetler Kanunu) uyarınca bilgiler</h3>
+          <address>
+            Gökhan Köse<br>
+            KoeSEO — şahıs işletmesi, sahibi Gökhan Köse<br>
+            <!-- TODO: sokak + numara, posta kodu + şehir -->
+            [Sokak No.]<br>
+            [Posta kodu] Bochum<br>
+            Almanya
+          </address>
+        </div>
+
+        <h3>İletişim</h3>
+        <dl class="kv">
+          <div><dt>E-posta</dt><dd><a href="mailto:info@koeseo.com">info@koeseo.com</a></dd></div>
+          <!-- TODO: telefon numarası -->
+          <div><dt>Telefon</dt><dd>[Telefon numarası]</dd></div>
+        </dl>
+
+        <h3>Katma değer vergisi</h3>
+        <!-- TODO: KDV kimlik numarası VEYA § 19 UStG küçük işletme notu -->
+        <p>Alman Katma Değer Vergisi Kanunu'nun 27a maddesi uyarınca KDV kimlik
+          numarası:<br>
+          [DE KDV No.]</p>
+
+        <h3>MStV § 18 fıkra 2 uyarınca içerikten sorumlu</h3>
+        <p>Gökhan Köse, adres yukarıdaki gibidir.</p>
+
+        <h3>Tüketici uyuşmazlıklarının çözümü</h3>
+        <p>Bir tüketici hakem heyeti önünde uyuşmazlık çözüm sürecine katılmaya ne
+          hazırım ne de yükümlüyüm.</p>
+
+        <h3>İçerikten sorumluluk</h3>
+        <p>Hizmet sağlayıcı olarak, bu sayfalardaki kendi içeriklerimden § 7 fıkra 1 DDG
+          uyarınca genel yasalar çerçevesinde sorumluyum. Ancak §§ 8 ila 10 DDG uyarınca,
+          hizmet sağlayıcı olarak iletilen veya saklanan üçüncü taraf bilgilerini izlemekle
+          ya da hukuka aykırı bir faaliyete işaret eden koşulları araştırmakla yükümlü
+          değilim. Genel yasalar uyarınca bilgilerin kaldırılmasına veya kullanımının
+          engellenmesine ilişkin yükümlülükler bundan etkilenmez. Bu konudaki sorumluluk
+          ancak somut bir hak ihlalinin öğrenildiği andan itibaren doğar. İlgili hak
+          ihlallerinden haberdar olduğumda bu içerikleri derhal kaldırırım.</p>
+
+        <h3>Bağlantılardan sorumluluk</h3>
+        <p>Bu site, içeriklerine hiçbir etkimin olmadığı üçüncü taraflara ait harici web
+          sitelerine bağlantılar içerir. Bu nedenle bu yabancı içerikler için sorumluluk
+          üstlenemem. Bağlantı verilen sayfaların içeriğinden daima ilgili sağlayıcı veya
+          işletmeci sorumludur. Bağlantı verilen sayfalar, bağlantının kurulduğu anda olası
+          hukuka aykırılıklar açısından kontrol edilmiştir; o anda hukuka aykırı içerik
+          tespit edilmemiştir. Somut bir hak ihlali belirtisi olmadan bağlantı verilen
+          sayfaların sürekli içerik denetimi makul değildir. Hak ihlallerinden haberdar
+          olduğumda bu tür bağlantıları derhal kaldırırım.</p>
+
+        <h3>Telif hakkı</h3>
+        <p>Site işletmecisi tarafından bu sayfalarda oluşturulan içerikler ve eserler
+          Alman telif hakkı kanununa tabidir. Telif hakkının sınırları dışındaki çoğaltma,
+          işleme, dağıtma ve her türlü değerlendirme, ilgili yazarın veya üreticinin yazılı
+          onayını gerektirir.</p>
+
+        <h3>Veri koruma</h3>
+        <p>Bu site çerez kullanmaz; harici yazı tipi, betik veya analiz hizmeti yüklemez
+          ve üçüncü taraflara veri aktarmaz. Seçtiğiniz dil yalnızca tarayıcınızda yerel
+          olarak saklanır (localStorage) ve hiçbir zaman iletilmez. Siteyi ziyaret
+          ettiğinizde web sunucusu, güvenli işletim amacıyla teknik olarak gerekli erişim
+          verilerini (IP adresi, zaman damgası, talep edilen kaynak, tarayıcı bilgisi)
+          GDPR md. 6 f. 1 (f) uyarınca işler; bu kayıtlar en geç 7 gün sonra silinir.
+          E-posta ile iletişime geçmeniz hâlinde, ilettiğiniz bilgileri yalnızca talebinizi
+          işleme almak için kullanırım (GDPR md. 6 f. 1 (b) veya (f)). Bilgi edinme,
+          düzeltme, silme, kısıtlama, veri taşınabilirliği ve itiraz haklarına ve ayrıca
+          yetkili denetim makamına (Kuzey Ren-Vestfalya Eyalet Veri Koruma ve Bilgi
+          Edinme Özgürlüğü Görevlisi) şikâyette bulunma hakkına sahipsiniz. Talepleriniz
+          için: <a href="mailto:info@koeseo.com">info@koeseo.com</a>.</p>
+      </div>
     </section>
   </main>
 
@@ -396,6 +492,7 @@ footer a:hover{color:var(--accent)}
     <span><a href="#impressum">
       <span data-t="de">Impressum &amp; Datenschutz</span>
       <span data-t="en">Legal Notice &amp; Privacy</span>
+      <span data-t="tr">Künye &amp; Veri koruma</span>
     </a></span>
   </footer>
 
@@ -403,6 +500,7 @@ footer a:hover{color:var(--accent)}
 
 <script>
 (function(){
+  var LANGS = ['de', 'en', 'tr'];
   var root = document.documentElement;
   var buttons = document.querySelectorAll('[data-setlang]');
 
@@ -418,10 +516,16 @@ footer a:hover{color:var(--accent)}
     try { return localStorage.getItem('lang'); } catch (e) { return null; }
   }
 
-  var initial = stored();
-  if (initial !== 'de' && initial !== 'en'){
-    initial = (navigator.language || 'de').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+  function fromBrowser(){
+    var tag = (navigator.language || 'de').toLowerCase();
+    for (var i = 0; i < LANGS.length; i++){
+      if (tag.indexOf(LANGS[i]) === 0) return LANGS[i];
+    }
+    return 'en';
   }
+
+  var initial = stored();
+  if (LANGS.indexOf(initial) === -1) initial = fromBrowser();
   apply(initial);
 
   for (var i = 0; i < buttons.length; i++){
