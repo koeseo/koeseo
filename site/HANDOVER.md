@@ -176,3 +176,32 @@ curl -sSI https://koeseo.com/robots.txt | head -3
 Im Browser einmal alle drei Sprachen live durchgehen und in den DevTools auf dem Network-Tab
 gegenchecken, dass **keine** externe Domain geladen wird — die Datenschutzerklärung auf der
 Seite sagt genau das zu.
+
+---
+
+## Nachtrag 14.09.2026 — abgearbeitet
+
+Erledigt vom lokalen Agenten, mit Messwerten:
+
+- **Impressum:** Anschrift (Annastraße 27, 44793 Bochum) und USt-IdNr. DE327767879
+  wörtlich aus https://koeseo.de/impressum, in allen drei Sprachfassungen. Die
+  Telefonzeile ist entfallen — koeseo.de nennt keine Nummer, § 5 DDG verlangt sie
+  nicht zwingend. Entscheidung von G-KHAAN am 14.09.
+- **Kontakt:** info@koeseo.com bleibt, auf Ansage. Die Mail läuft weiter über
+  All-Inkl (MX `w0176259.kasserver.com`), davon wurde nichts angefasst.
+- **Nicht übernommen:** Steuernummer (bei vorhandener USt-IdNr. nicht nötig) und
+  die Telefonnummer aus den Whois-Daten.
+- **DNS:** koeseo.com lag bei Porkbun, delegierte aber auf `ns5/ns6.kasserver.com`;
+  die Porkbun-Zone war leer. Alle Records wurden zuerst 1:1 nachgebaut
+  (MX, SPF, DMARC, brevo-code, mail/smtp/imap/pop/webmail/autodiscover/autoconfig
+  weiterhin auf 85.13.130.144), nur apex und www zeigen jetzt auf 185.150.25.225.
+  Danach Nameserver-Wechsel auf Porkbun. Mail blieb dabei unverändert.
+- **Deploy:** Coolify-Resource `koeseo-com` (Projekt KoeHub, production, Dockerfile
+  aus `/site`, Port 80), Traefik + Let's Encrypt, Auto-Deploy per GitHub-Webhook.
+- **Zwei Korrekturen aus der Live-Messung:** `/impressum` leitete auf *http* um
+  (nginx sah hinter Traefik kein TLS → `absolute_redirect off`), und www lieferte
+  die Seite ein zweites Mal statt umzuleiten. Der Kontrast von `--fg-faint` lag bei
+  3,66:1 und damit unter dem Minimum; jetzt 5,5:1.
+- **Gemessen nach dem Deploy:** kein Element unter 4,5:1, kein horizontales Scrollen
+  bei 375 px, keine externe Domain im Netzwerk-Tab, ohne JavaScript erscheint nur
+  die deutsche Fassung.
