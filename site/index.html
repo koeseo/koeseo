@@ -109,8 +109,7 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.1rem,11.5vw,7.5rem
 .soon h2{margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-faint);font-weight:500}
 .soon-body p{margin:0 0 1.1rem;color:var(--fg-dim);max-width:38rem}
 .soon-body p:last-of-type{margin-bottom:0}
-.cursor{display:inline-block;width:.55em;height:1.05em;vertical-align:-.16em;background:var(--accent);margin-left:.15em;animation:blink 1.15s steps(1) infinite}
-@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.work-links{margin-top:1.6rem}
 .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.6rem 0 0;padding:0;list-style:none}
 .tags li{
   font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
@@ -212,22 +211,28 @@ footer a:hover{color:var(--accent)}
     </section>
 
     <section class="soon" id="soon">
-      <h2><span data-t="de">Status</span><span data-t="en">Status</span><span data-t="tr">Durum</span></h2>
+      <h2><span data-t="de">Arbeit</span><span data-t="en">Work</span><span data-t="tr">İşler</span></h2>
       <div class="soon-body">
         <p>
-          <span data-t="de">Die vollständige Seite ist im Aufbau.</span>
-          <span data-t="en">The full site is under construction.</span>
-          <span data-t="tr">Sitenin tamamı yapım aşamasında.</span>
-          <span class="cursor" aria-hidden="true"></span>
+          <span data-t="de">Mein Betrieb heißt koeseo: SEO und KI-Sichtbarkeit für den Mittelstand,
+            gebaut auf eigener Agenten-Infrastruktur.</span>
+          <span data-t="en">My practice is koeseo: SEO and AI visibility for SMEs,
+            built on my own agent infrastructure.</span>
+          <span data-t="tr">İşletmemin adı koeseo: KOBİ'ler için SEO ve yapay zekâ görünürlüğü,
+            kendi ajan altyapımın üzerinde.</span>
         </p>
         <p>
-          <span data-t="de">Bis dahin: alles Weitere auf Anfrage. Neue Projekte nehme ich
-            nach Kapazität an — eine kurze Mail genügt.</span>
-          <span data-t="en">Until then, everything else on request. I take on new projects
-            as capacity allows — a short email is enough.</span>
-          <span data-t="tr">O zamana kadar diğer her şey talep üzerine. Yeni projeleri
-            kapasiteye göre alıyorum — kısa bir e-posta yeterli.</span>
+          <span data-t="de">Wie sichtbar eine Marke in KI-Antworten ist, zeigt der kostenlose Scan im KI-Radar.
+            Neue Projekte nehme ich nach Kapazität an. Eine kurze Mail genügt.</span>
+          <span data-t="en">The free KI-Radar scan shows how visible a brand is in AI answers.
+            I take on new projects as capacity allows. A short email is enough.</span>
+          <span data-t="tr">Ücretsiz KI-Radar taraması, bir markanın yapay zekâ yanıtlarında ne kadar görünür
+            olduğunu gösterir. Yeni projeleri kapasiteye göre alıyorum. Kısa bir e-posta yeterli.</span>
         </p>
+        <div class="links work-links">
+          <a href="https://koeseo.de/">koeseo.de <span class="arw">↗</span></a>
+          <a href="https://radar.koeseo.de/">KI-Radar <span class="arw">↗</span></a>
+        </div>
         <ul class="tags">
           <li>
             <span data-t="de">AI-Agenten</span><span data-t="en">AI Agents</span><span data-t="tr">Yapay Zekâ Ajanları</span>
